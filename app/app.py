@@ -8,13 +8,13 @@ model = joblib.load("models/best_model.pkl")
 
 st.write("Enter network details:")
 
-# Simple inputs (demo)
+# Inputs
 duration = st.number_input("Duration")
 src_bytes = st.number_input("Source Bytes")
 dst_bytes = st.number_input("Destination Bytes")
 
 if st.button("Predict"):
-    # 41 features required → बाकी zero दे रहे हैं
+    # 41 features total
     features = [duration, src_bytes, dst_bytes] + [0]*38
 
     prediction = model.predict([features])
