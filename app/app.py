@@ -1,22 +1,24 @@
 import streamlit as st
 import joblib
+import os
 
 st.title("🔐 Cyber Attack Detection System")
 
 # Load model
-model = joblib.load("models/best_model.pkl")
+model_path = os.path.join("models", "best_model.pkl")
+model = joblib.load(model_path)
 
-st.write("Enter network details:")
+st.write("Enter all 41 feature values:")
 
-# Inputs
-duration = st.number_input("Duration")
-src_bytes = st.number_input("Source Bytes")
-dst_bytes = st.number_input("Destination Bytes")
+# Create input fields for 41 features
+features = []
 
+for i in range(41):
+    val = st.number_input(f"Feature {i+1}", value=0.0)
+    features.append(val)
+
+# Prediction
 if st.button("Predict"):
-    # 41 features total
-    features = [duration, src_bytes, dst_bytes] + [0]*38
-
     prediction = model.predict([features])
 
     if prediction[0] == 1:
