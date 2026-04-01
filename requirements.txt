@@ -1,6 +1,7 @@
-streamlit==1.25.0
-altair==4.2.2
+streamlit>=1.30.0
+altair>=4.2.2
 scikit-learn
 pandas
 numpy
 joblib
+pillow>=10.0.0
